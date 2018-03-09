@@ -6,7 +6,7 @@
 **     Component   : ADC
 **     Version     : Component 01.690, Driver 01.30, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2018-02-26, 17:12, # CodeGen: 37
+**     Date/Time   : 2018-01-29, 15:14, # CodeGen: 11
 **     Abstract    :
 **         This device "ADC" implements an A/D converter,
 **         its control methods and interrupt/event handling procedure.
@@ -17,12 +17,9 @@
 **          Interrupt service/event                        : Enabled
 **            A/D interrupt                                : Vadc
 **            A/D interrupt priority                       : medium priority
-**          A/D channels                                   : 2
+**          A/D channels                                   : 1
 **            Channel0                                     : 
 **              A/D channel (pin)                          : PTA0_KBI1P0_TPM1CH0_ADP0_ACMP1PLUS
-**              A/D channel (pin) signal                   : 
-**            Channel1                                     : 
-**              A/D channel (pin)                          : PTA1_KBI1P1_TPM2CH0_ADP1_ACMP1MINUS
 **              A/D channel (pin) signal                   : 
 **          A/D resolution                                 : 12 bits
 **          Conversion time                                : 46 µs
@@ -42,10 +39,8 @@
 **          Get value directly                             : yes
 **          Wait for result                                : yes
 **     Contents    :
-**         Measure        - byte AD1_Measure(bool WaitForResult);
-**         MeasureChan    - byte AD1_MeasureChan(bool WaitForResult, byte Channel);
-**         GetValue16     - byte AD1_GetValue16(word *Values);
-**         GetChanValue16 - byte AD1_GetChanValue16(byte Channel, word *Value);
+**         Measure    - byte AD1_Measure(bool WaitForResult);
+**         GetValue16 - byte AD1_GetValue16(word *Values);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -167,39 +162,6 @@ byte AD1_Measure(bool WaitForResult);
 */
 /* ===================================================================*/
 
-byte AD1_MeasureChan(bool WaitForResult,byte Channel);
-/*
-** ===================================================================
-**     Method      :  AD1_MeasureChan (component ADC)
-*/
-/*!
-**     @brief
-**         This method performs measurement on one channel. (Note: If
-**         the [number of conversions] is more than one the conversion
-**         of the A/D channel is performed specified number of times.)
-**     @param
-**         WaitForResult   - Wait for a result of
-**                           conversion. If the [interrupt service] is
-**                           disabled and at the same time a [number of
-**                           conversions] is greater than 1, the
-**                           WaitForResult parameter is ignored and the
-**                           method waits for each result every time.
-**     @param
-**         Channel         - Channel number. If only one
-**                           channel in the component is set this
-**                           parameter is ignored, because the parameter
-**                           is set inside this method.
-**     @return
-**                         - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - This device does not work in
-**                           the active speed mode
-**                           ERR_DISABLED - Device is disabled
-**                           ERR_BUSY - A conversion is already running
-**                           ERR_RANGE - Parameter "Channel" out of range
-*/
-/* ===================================================================*/
-
 byte AD1_GetValue16(word *Values);
 /*
 ** ===================================================================
@@ -222,42 +184,6 @@ byte AD1_GetValue16(word *Values);
 **                           the active speed mode
 **                           ERR_NOTAVAIL - Requested value not
 **                           available
-**                           ERR_OVERRUN - External trigger overrun flag
-**                           was detected after the last value(s) was
-**                           obtained (for example by GetValue). This
-**                           error may not be supported on some CPUs
-**                           (see generated code).
-*/
-/* ===================================================================*/
-
-byte AD1_GetChanValue16(byte Channel,word *Value);
-/*
-** ===================================================================
-**     Method      :  AD1_GetChanValue16 (component ADC)
-*/
-/*!
-**     @brief
-**         This method returns the last measured value of the required
-**         channel. Compared with [GetChanValue] method this method
-**         returns more accurate result if the [number of conversions]
-**         is greater than 1 and [AD resolution] is less than 16 bits.
-**         In addition, the user code dependency on [AD resolution] is
-**         eliminated.
-**     @param
-**         Channel         - Channel number. If only one
-**                           channel in the component is set then this
-**                           parameter is ignored.
-**     @param
-**         Value           - Pointer to the measured value.
-**     @return
-**                         - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - This device does not work in
-**                           the active speed mode
-**                           ERR_NOTAVAIL - Requested value not
-**                           available
-**                           ERR_RANGE - Parameter "Channel" out of
-**                           range
 **                           ERR_OVERRUN - External trigger overrun flag
 **                           was detected after the last value(s) was
 **                           obtained (for example by GetValue). This
