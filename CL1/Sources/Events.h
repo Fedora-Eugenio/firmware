@@ -41,6 +41,8 @@
 #include "Bit2.h"
 #include "Bit3.h"
 #include "Bit4.h"
+#include "Bit5.h"
+#include "Bit6.h"
 
 #define ESPERAR 0
 #define MEDIR  1

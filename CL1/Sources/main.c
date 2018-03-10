@@ -37,6 +37,8 @@
 #include "Bit2.h"
 #include "Bit3.h"
 #include "Bit4.h"
+#include "Bit5.h"
+#include "Bit6.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -46,21 +48,19 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 unsigned char estado = ESPERAR;
 unsigned char CodError;
-unsigned int  Medida1;
-unsigned int  Medida2;
-unsigned int  D1;
-unsigned int  D2;
-unsigned int  D3;
-unsigned int  D4;
+unsigned int  Ultrasonido;
+unsigned int  EjeX;
+unsigned int  EjeY;
+unsigned int  EjeZ;
+unsigned int  Gatillo;
+unsigned int  Foto1;
+unsigned int  Foto2;
+unsigned int  Foto3;
+unsigned int  Foto4;
+unsigned int  Foto5;
 unsigned int Enviados = 2;		// Esta variable no aporta nada más sino el número de elementos del arreglo a enviar.
 
-typedef union{
-unsigned char u8[2];
-unsigned int u16;
-}AMPLITUD;
-
-volatile AMPLITUD iADC;
-unsigned char cTrama[5]={0xF2,0x00,0x00,0x00,0x00}; 	
+unsigned char cTrama[9]={0xF2,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}; 	
 
 
 void main(void)
@@ -84,33 +84,51 @@ void main(void)
    			//CodError = AD1_Measure(TRUE);
    			//CodError = AD1_GetValue16(&Medida); //1111 1111 1111 0000
    			AD1_MeasureChan(TRUE, 0);
-   			CodError =  AD1_GetChanValue16(0, &Medida1);
+   			CodError =  AD1_GetChanValue16(0, &Ultrasonido);
    			AD1_MeasureChan(TRUE, 1);
-   			CodError =  AD1_GetChanValue16(1, &Medida2);
-   			D1 = Bit1_GetVal();
-   			D2 = Bit2_GetVal();
-   			D3 = Bit3_GetVal();
-   			D4 = Bit4_GetVal();
+   			CodError =  AD1_GetChanValue16(1, &EjeX);
+   			AD1_MeasureChan(TRUE, 2);
+   			CodError =  AD1_GetChanValue16(2, &EjeY);
+   			AD1_MeasureChan(TRUE, 3);
+   			CodError =  AD1_GetChanValue16(3, &EjeZ);
+   			Gatillo = Bit1_GetVal();
+   			Foto1 = Bit2_GetVal();
+   			Foto2 = Bit3_GetVal();
+   			Foto3 = Bit4_GetVal();
+   			Foto4 = Bit5_GetVal();
+   			Foto5 = Bit6_GetVal();
    			//Protocolo de comunicación
    			
-   			cTrama[1]= (Medida1 >> 11) & (0x1F);
-   			D1 = (D1 << 4); 
-   			D2 = (D2 << 2);
-   			cTrama[1]= cTrama[1] | D1 | D2;
-   			cTrama[2]= (Medida1 >> 4) & (0x7F);
+   			cTrama[1]= (Ultrasonido >> 11) & (0x1F);
+   			Gatillo = (Gatillo << 4); 
+   			Foto1 = (Foto1 << 2);
+   			cTrama[1]= cTrama[1] | Gatillo | Foto1;
+   			cTrama[2]= (Ultrasonido >> 4) & (0x7F);
    			
-   			cTrama[3]= (Medida2 >> 11) & (0x1F);
-   			D3 = (D3 << 4); 
-   			D4 = (D4 << 2);
-   			cTrama[3]= cTrama[3] | D3 | D4;
-   			cTrama[4]= (Medida2 >> 4) & (0x7F);
+   			cTrama[3]= (EjeX >> 11) & (0x1F);
+   			Foto2 = (Foto2 << 4); 
+   			Foto3 = (Foto3 << 2);
+   			cTrama[3]= cTrama[3] | Foto2 | Foto3;
+   			cTrama[4]= (EjeX >> 4) & (0x7F);
+   			
+   			cTrama[5]= (EjeY >> 11) & (0x1F);
+   			Foto4 = (Foto4 << 4); 
+   			Foto5 = (Foto5 << 2);
+   			cTrama[5]= cTrama[5] | Foto4 | Foto5;
+   			cTrama[6]= (EjeY >> 4) & (0x7F);
+   			   			
+   			cTrama[7]= (EjeZ >> 11) & (0x1F);
+   			//Foto2 = (Foto2 << 4); 
+   			//Foto3 = (Foto3 << 2);
+   			//cTrama[3]= cTrama[3] | Foto2 | Foto3;
+   			cTrama[8]= (EjeZ >> 4) & (0x7F);
    
    			estado = ENVIAR;
    			break;
    	
    		case ENVIAR:
    			
-   			CodError = AS1_SendBlock(cTrama,5,&Enviados); //El arreglo con la medición está en iADC.u8 (notar que es un apuntador)
+   			CodError = AS1_SendBlock(cTrama,9,&Enviados); 
    			estado = ESPERAR;
    			
    			break;

@@ -7,7 +7,7 @@
 **     Version     : Component 01.003, Driver 01.40, CPU db: 3.00.067
 **     Datasheet   : MC9S08QE128RM Rev. 2 6/2007
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2018-01-29, 16:16, # CodeGen: 23
+**     Date/Time   : 2018-03-10, 11:16, # CodeGen: 30
 **     Abstract    :
 **         This component "MC9S08QE128_80" contains initialization 
 **         of the CPU and provides basic methods and events for 
@@ -73,6 +73,8 @@
 #include "Bit2.h"
 #include "Bit3.h"
 #include "Bit4.h"
+#include "Bit5.h"
+#include "Bit6.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -229,12 +231,14 @@ void PE_low_level_init(void)
   clrSetReg8Bits(PTBDD, 0x01U, 0x02U);  
   /* PTBD: PTBD1=1 */
   setReg8Bits(PTBD, 0x02U);             
-  /* APCTL1: ADPC0=1 */
-  setReg8Bits(APCTL1, 0x01U);           
-  /* PTDPE: PTDPE3=1,PTDPE2=1 */
-  setReg8Bits(PTDPE, 0x0CU);            
-  /* PTDDD: PTDDD3=0,PTDDD2=0 */
-  clrReg8Bits(PTDDD, 0x0CU);            
+  /* APCTL1: ADPC1=1,ADPC0=1 */
+  setReg8Bits(APCTL1, 0x03U);           
+  /* APCTL2: ADPC9=1,ADPC8=1 */
+  setReg8Bits(APCTL2, 0x03U);           
+  /* PTDPE: PTDPE3=1,PTDPE2=1,PTDPE1=1,PTDPE0=1 */
+  setReg8Bits(PTDPE, 0x0FU);            
+  /* PTDDD: PTDDD3=0,PTDDD2=0,PTDDD1=0,PTDDD0=0 */
+  clrReg8Bits(PTDDD, 0x0FU);            
   /* PTASE: PTASE7=0,PTASE6=0,PTASE4=0,PTASE3=0,PTASE2=0,PTASE1=0,PTASE0=0 */
   clrReg8Bits(PTASE, 0xDFU);            
   /* PTBSE: PTBSE7=0,PTBSE6=0,PTBSE5=0,PTBSE4=0,PTBSE3=0,PTBSE2=0,PTBSE1=0,PTBSE0=0 */
@@ -282,6 +286,8 @@ void PE_low_level_init(void)
   /* ### BitIO "Bit2" init code ... */
   /* ### BitIO "Bit3" init code ... */
   /* ### BitIO "Bit4" init code ... */
+  /* ### BitIO "Bit5" init code ... */
+  /* ### BitIO "Bit6" init code ... */
   CCR_lock = (byte)0;
   __EI();                              /* Enable interrupts */
 }

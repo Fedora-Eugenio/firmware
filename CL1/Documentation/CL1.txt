@@ -41,9 +41,14 @@ Module "AS1"       (component AsynchroSerial)
 Module "AD1"       (component ADC)
    - AD1_Measure -This method performs one measurement on all channels that are set in the component inspector. (Note: If the 
                 <number of conversions> is more than one the conversion of A/D channels is performed specified number of times.)
+   - AD1_MeasureChan -This method performs measurement on one channel. (Note: If the <number of conversions> is more than one 
+                the conversion of the A/D channel is performed specified number of times.)
    - AD1_GetValue16 -This method returns the last measured values of all channels. Compared with <GetValue> method this method 
                 returns more accurate result if the <number of conversions> is greater than 1 and <AD resolution> is less than 
                 16 bits. In addition, the user code dependency on <AD resolution> is eliminated.
+   - AD1_GetChanValue16 -This method returns the last measured value of the required channel. Compared with <GetChanValue> 
+                method this method returns more accurate result if the <number of conversions> is greater than 1 and <AD 
+                resolution> is less than 16 bits. In addition, the user code dependency on <AD resolution> is eliminated.
 
 Module "Bit2"      (component BitIO)
    - Bit2_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
@@ -57,6 +62,16 @@ Module "Bit3"      (component BitIO)
 
 Module "Bit4"      (component BitIO)
    - Bit4_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
+                limitations). This method cannot be disabled if direction is [input].
+
+Module "Bit5"      (component BitIO)
+   - Bit5_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
+                returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
+                limitations). This method cannot be disabled if direction is [input].
+
+Module "Bit6"      (component BitIO)
+   - Bit6_GetVal -Returns the input/output value. If the direction is [input] then the input value of the pin is read and 
                 returned. If the direction is [output] then the last written value is returned (see <Safe mode> property for 
                 limitations). This method cannot be disabled if direction is [input].
 

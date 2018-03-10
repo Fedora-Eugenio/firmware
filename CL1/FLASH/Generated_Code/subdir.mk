@@ -12,6 +12,8 @@ C_SRCS_QUOTED += \
 "../Generated_Code/Bit2.c" \
 "../Generated_Code/Bit3.c" \
 "../Generated_Code/Bit4.c" \
+"../Generated_Code/Bit5.c" \
+"../Generated_Code/Bit6.c" \
 "../Generated_Code/Cpu.c" \
 "../Generated_Code/IO_Map.c" \
 "../Generated_Code/TI1.c" \
@@ -24,6 +26,8 @@ C_SRCS += \
 ../Generated_Code/Bit2.c \
 ../Generated_Code/Bit3.c \
 ../Generated_Code/Bit4.c \
+../Generated_Code/Bit5.c \
+../Generated_Code/Bit6.c \
 ../Generated_Code/Cpu.c \
 ../Generated_Code/IO_Map.c \
 ../Generated_Code/TI1.c \
@@ -36,6 +40,8 @@ OBJS += \
 ./Generated_Code/Bit2_c.obj \
 ./Generated_Code/Bit3_c.obj \
 ./Generated_Code/Bit4_c.obj \
+./Generated_Code/Bit5_c.obj \
+./Generated_Code/Bit6_c.obj \
 ./Generated_Code/Cpu_c.obj \
 ./Generated_Code/IO_Map_c.obj \
 ./Generated_Code/TI1_c.obj \
@@ -48,6 +54,8 @@ OBJS_QUOTED += \
 "./Generated_Code/Bit2_c.obj" \
 "./Generated_Code/Bit3_c.obj" \
 "./Generated_Code/Bit4_c.obj" \
+"./Generated_Code/Bit5_c.obj" \
+"./Generated_Code/Bit6_c.obj" \
 "./Generated_Code/Cpu_c.obj" \
 "./Generated_Code/IO_Map_c.obj" \
 "./Generated_Code/TI1_c.obj" \
@@ -60,6 +68,8 @@ C_DEPS += \
 ./Generated_Code/Bit2_c.d \
 ./Generated_Code/Bit3_c.d \
 ./Generated_Code/Bit4_c.d \
+./Generated_Code/Bit5_c.d \
+./Generated_Code/Bit6_c.d \
 ./Generated_Code/Cpu_c.d \
 ./Generated_Code/IO_Map_c.d \
 ./Generated_Code/TI1_c.d \
@@ -72,6 +82,8 @@ C_DEPS_QUOTED += \
 "./Generated_Code/Bit2_c.d" \
 "./Generated_Code/Bit3_c.d" \
 "./Generated_Code/Bit4_c.d" \
+"./Generated_Code/Bit5_c.d" \
+"./Generated_Code/Bit6_c.d" \
 "./Generated_Code/Cpu_c.d" \
 "./Generated_Code/IO_Map_c.d" \
 "./Generated_Code/TI1_c.d" \
@@ -84,6 +96,8 @@ OBJS_OS_FORMAT += \
 ./Generated_Code/Bit2_c.obj \
 ./Generated_Code/Bit3_c.obj \
 ./Generated_Code/Bit4_c.obj \
+./Generated_Code/Bit5_c.obj \
+./Generated_Code/Bit6_c.obj \
 ./Generated_Code/Cpu_c.obj \
 ./Generated_Code/IO_Map_c.obj \
 ./Generated_Code/TI1_c.obj \
@@ -144,9 +158,25 @@ Generated_Code/Bit4_c.obj: ../Generated_Code/Bit4.c
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Generated_Code/Cpu_c.obj: ../Generated_Code/Cpu.c
+Generated_Code/Bit5_c.obj: ../Generated_Code/Bit5.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #10 $<'
+	@echo 'Invoking: HCS08 Compiler'
+	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/Bit5.args" -ObjN="Generated_Code/Bit5_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Generated_Code/Bit6_c.obj: ../Generated_Code/Bit6.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #11 $<'
+	@echo 'Invoking: HCS08 Compiler'
+	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/Bit6.args" -ObjN="Generated_Code/Bit6_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Generated_Code/Cpu_c.obj: ../Generated_Code/Cpu.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #12 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/Cpu.args" -ObjN="Generated_Code/Cpu_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -154,7 +184,7 @@ Generated_Code/Cpu_c.obj: ../Generated_Code/Cpu.c
 
 Generated_Code/IO_Map_c.obj: ../Generated_Code/IO_Map.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #11 $<'
+	@echo 'Executing target #13 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/IO_Map.args" -ObjN="Generated_Code/IO_Map_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -162,7 +192,7 @@ Generated_Code/IO_Map_c.obj: ../Generated_Code/IO_Map.c
 
 Generated_Code/TI1_c.obj: ../Generated_Code/TI1.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #12 $<'
+	@echo 'Executing target #14 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/TI1.args" -ObjN="Generated_Code/TI1_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -170,7 +200,7 @@ Generated_Code/TI1_c.obj: ../Generated_Code/TI1.c
 
 Generated_Code/Vectors_c.obj: ../Generated_Code/Vectors.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #13 $<'
+	@echo 'Executing target #15 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Generated_Code/Vectors.args" -ObjN="Generated_Code/Vectors_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
