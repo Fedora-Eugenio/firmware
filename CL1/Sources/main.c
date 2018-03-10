@@ -81,8 +81,7 @@ void main(void)
    			break;
    			
    		case MEDIR:
-   			//CodError = AD1_Measure(TRUE);
-   			//CodError = AD1_GetValue16(&Medida); //1111 1111 1111 0000
+   			//Se reciben las señales de los sensores analógicos y se guardan en las variables correspondientes
    			AD1_MeasureChan(TRUE, 0);
    			CodError =  AD1_GetChanValue16(0, &Ultrasonido);
    			AD1_MeasureChan(TRUE, 1);
@@ -91,36 +90,39 @@ void main(void)
    			CodError =  AD1_GetChanValue16(2, &EjeY);
    			AD1_MeasureChan(TRUE, 3);
    			CodError =  AD1_GetChanValue16(3, &EjeZ);
+   			
+   			//Se reciben las señales de los sensores digitales y se guardan en las variables correspondientes
    			Gatillo = Bit1_GetVal();
    			Foto1 = Bit2_GetVal();
    			Foto2 = Bit3_GetVal();
    			Foto3 = Bit4_GetVal();
    			Foto4 = Bit5_GetVal();
    			Foto5 = Bit6_GetVal();
-   			//Protocolo de comunicación
    			
+   			//Protocolo de comunicación
+            //Canal 1
    			cTrama[1]= (Ultrasonido >> 11) & (0x1F);
    			Gatillo = (Gatillo << 4); 
    			Foto1 = (Foto1 << 2);
    			cTrama[1]= cTrama[1] | Gatillo | Foto1;
    			cTrama[2]= (Ultrasonido >> 4) & (0x7F);
    			
+   			//Canal 2
    			cTrama[3]= (EjeX >> 11) & (0x1F);
    			Foto2 = (Foto2 << 4); 
    			Foto3 = (Foto3 << 2);
    			cTrama[3]= cTrama[3] | Foto2 | Foto3;
    			cTrama[4]= (EjeX >> 4) & (0x7F);
    			
+   			//Canal 3
    			cTrama[5]= (EjeY >> 11) & (0x1F);
    			Foto4 = (Foto4 << 4); 
    			Foto5 = (Foto5 << 2);
    			cTrama[5]= cTrama[5] | Foto4 | Foto5;
    			cTrama[6]= (EjeY >> 4) & (0x7F);
-   			   			
+   			
+   			//Canal 4
    			cTrama[7]= (EjeZ >> 11) & (0x1F);
-   			//Foto2 = (Foto2 << 4); 
-   			//Foto3 = (Foto3 << 2);
-   			//cTrama[3]= cTrama[3] | Foto2 | Foto3;
    			cTrama[8]= (EjeZ >> 4) & (0x7F);
    
    			estado = ENVIAR;
