@@ -30,7 +30,7 @@ Entry point: 0x208A (_EntryPoint)
 _startupData is allocated at 0x215B and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0xA0     64
+  _Range   pZeroOut       0xA0     72
   _Copy    *toCopyDownBeg 0x2699
 } _startupData;
 
@@ -224,16 +224,16 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_1816                  2   N/I     0x1816     0x1817   .absSeg180
 .abs_section_1870                  2   N/I     0x1870     0x1871   .absSeg181
 .abs_section_ffc0                 64     R     0xFFC0     0xFFFF   .absSeg182
-.bss                              20   R/W       0xAB       0xBE   RAM
+.bss                              28   R/W       0xAB       0xC6   RAM
 .startData                        18     R     0x215B     0x216C   ROM
 .init                            219     R     0x2080     0x215A   ROM
-.common                           33   R/W       0xBF       0xDF   RAM
-.stack                           512   R/W       0xE0      0x2DF   RAM
+.common                           33   R/W       0xC7       0xE7   RAM
+.stack                           512   R/W       0xE8      0x2E7   RAM
 .copy                              8     R     0x2699     0x26A0   ROM
 
 Summary of section sizes per section type:
 READ_ONLY (R):         663 (dec:     1635)
-READ_WRITE (R/W):      240 (dec:      576)
+READ_WRITE (R/W):      248 (dec:      584)
 NO_INIT (N/I):          CF (dec:      207)
 
 *********************************************************************************************
@@ -263,17 +263,17 @@ MODULE:                 -- main_c.obj --
      Enviados                                    A0       2       2       1   .data       
      cTrama                                      A2       9       9      12   .data       
      estado                                      AB       1       1       4   .bss        
-     CodError                                    BF       1       1       3   .common     
-     Ultrasonido                                 C0       2       2       3   .common     
-     EjeX                                        C2       2       2       3   .common     
-     EjeY                                        C4       2       2       3   .common     
-     EjeZ                                        C6       2       2       2   .common     
-     Gatillo                                     C8       2       2       3   .common     
-     Foto1                                       CA       2       2       3   .common     
-     Foto2                                       CC       2       2       3   .common     
-     Foto3                                       CE       2       2       3   .common     
-     Foto4                                       D0       2       2       3   .common     
-     Foto5                                       D2       2       2       3   .common     
+     CodError                                    C7       1       1       3   .common     
+     Ultrasonido                                 C8       2       2       3   .common     
+     EjeX                                        CA       2       2       3   .common     
+     EjeY                                        CC       2       2       3   .common     
+     EjeZ                                        CE       2       2       2   .common     
+     Gatillo                                     D0       2       2       3   .common     
+     Foto1                                       D2       2       2       3   .common     
+     Foto2                                       D4       2       2       3   .common     
+     Foto3                                       D6       2       2       3   .common     
+     Foto4                                       D8       2       2       3   .common     
+     Foto5                                       DA       2       2       3   .common     
 MODULE:                 -- start08_c.obj --
 - PROCEDURES:
      loadByte                                  22F6       E      14       5   .text       
@@ -282,7 +282,7 @@ MODULE:                 -- start08_c.obj --
 - VARIABLES:
      _startupData                              215B       6       6       4   .startData  
 - LABELS:
-     __SEG_END_SSTACK                           2E0       0       0       1               
+     __SEG_END_SSTACK                           2E8       0       0       1               
 MODULE:                 -- AD1_c.obj --
 - PROCEDURES:
      AD1_Interrupt                             237A      7E     126       1   .text       
@@ -297,7 +297,7 @@ MODULE:                 -- AD1_c.obj --
      OutFlg                                      AC       1       1       8   .bss        
      SumChan                                     AD       1       1      13   .bss        
      ModeFlg                                     AE       1       1       8   .bss        
-     AD1_OutV                                    D4       8       8      13   .common     
+     AD1_OutV                                    DC       8       8      13   .common     
 MODULE:                 -- AS1_c.obj --
 - PROCEDURES:
      AS1_SendBlock                             24AF      A7     167       1   .text       
@@ -309,13 +309,13 @@ MODULE:                 -- AS1_c.obj --
      SerFlag                                     AF       1       1       8   .bss        
      InpIndxR                                    B0       1       1       1   .bss        
      InpIndxW                                    B1       1       1       5   .bss        
-     InpBuffer                                   B2       5       5       1   .bss        
-     OutIndxR                                    B7       1       1       5   .bss        
-     OutIndxW                                    B8       1       1       5   .bss        
-     OutBuffer                                   B9       5       5       2   .bss        
-     OnFreeTxBuf_semaphore                       BE       1       1       5   .bss        
-     AS1_InpLen                                  DC       1       1       4   .common     
-     AS1_OutLen                                  DD       1       1       6   .common     
+     InpBuffer                                   B2       9       9       1   .bss        
+     OutIndxR                                    BB       1       1       5   .bss        
+     OutIndxW                                    BC       1       1       5   .bss        
+     OutBuffer                                   BD       9       9       2   .bss        
+     OnFreeTxBuf_semaphore                       C6       1       1       5   .bss        
+     AS1_InpLen                                  E4       1       1       4   .common     
+     AS1_OutLen                                  E5       1       1       6   .common     
 MODULE:                 -- Cpu_c.obj --
 - PROCEDURES:
      Cpu_SWIInterrupt                          2080       6       6       1   .init       
@@ -325,8 +325,8 @@ MODULE:                 -- Cpu_c.obj --
 - VARIABLES:
      NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
      NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
-     CCR_reg                                     DE       1       1       2   .common     
-     CCR_lock                                    DF       1       1       5   .common     
+     CCR_reg                                     E6       1       1       2   .common     
+     CCR_lock                                    E7       1       1       5   .common     
 MODULE:                 -- IO_Map_c.obj --
 - PROCEDURES:
 - VARIABLES:
@@ -532,7 +532,7 @@ MODULE STATISTIC
   main_c.obj                                  33    375      0
   start08_c.obj                                0    132      0
   AD1_c.obj                                   11    309      8
-  AS1_c.obj                                   18    437      0
+  AS1_c.obj                                   26    437      0
   Cpu_c.obj                                    2    219      2
   IO_Map_c.obj                               207      0      0
   TI1_c.obj                                    0     33      0
@@ -1039,27 +1039,27 @@ OBJECT LIST SORTED BY ADDRESS
      SerFlag                                     AF       1       1       8   .bss        
      InpIndxR                                    B0       1       1       1   .bss        
      InpIndxW                                    B1       1       1       5   .bss        
-     InpBuffer                                   B2       5       5       1   .bss        
-     OutIndxR                                    B7       1       1       5   .bss        
-     OutIndxW                                    B8       1       1       5   .bss        
-     OutBuffer                                   B9       5       5       2   .bss        
-     OnFreeTxBuf_semaphore                       BE       1       1       5   .bss        
-     CodError                                    BF       1       1       3   .common     
-     Ultrasonido                                 C0       2       2       3   .common     
-     EjeX                                        C2       2       2       3   .common     
-     EjeY                                        C4       2       2       3   .common     
-     EjeZ                                        C6       2       2       2   .common     
-     Gatillo                                     C8       2       2       3   .common     
-     Foto1                                       CA       2       2       3   .common     
-     Foto2                                       CC       2       2       3   .common     
-     Foto3                                       CE       2       2       3   .common     
-     Foto4                                       D0       2       2       3   .common     
-     Foto5                                       D2       2       2       3   .common     
-     AD1_OutV                                    D4       8       8      13   .common     
-     AS1_InpLen                                  DC       1       1       4   .common     
-     AS1_OutLen                                  DD       1       1       6   .common     
-     CCR_reg                                     DE       1       1       2   .common     
-     CCR_lock                                    DF       1       1       5   .common     
+     InpBuffer                                   B2       9       9       1   .bss        
+     OutIndxR                                    BB       1       1       5   .bss        
+     OutIndxW                                    BC       1       1       5   .bss        
+     OutBuffer                                   BD       9       9       2   .bss        
+     OnFreeTxBuf_semaphore                       C6       1       1       5   .bss        
+     CodError                                    C7       1       1       3   .common     
+     Ultrasonido                                 C8       2       2       3   .common     
+     EjeX                                        CA       2       2       3   .common     
+     EjeY                                        CC       2       2       3   .common     
+     EjeZ                                        CE       2       2       2   .common     
+     Gatillo                                     D0       2       2       3   .common     
+     Foto1                                       D2       2       2       3   .common     
+     Foto2                                       D4       2       2       3   .common     
+     Foto3                                       D6       2       2       3   .common     
+     Foto4                                       D8       2       2       3   .common     
+     Foto5                                       DA       2       2       3   .common     
+     AD1_OutV                                    DC       8       8      13   .common     
+     AS1_InpLen                                  E4       1       1       4   .common     
+     AS1_OutLen                                  E5       1       1       6   .common     
+     CCR_reg                                     E6       1       1       2   .common     
+     CCR_lock                                    E7       1       1       5   .common     
      _SRS                                      1800       1       1       0   .abs_section_1800
      _SBDFR                                    1801       1       1       0   .abs_section_1801
      _SOPT1                                    1802       1       1       1   .abs_section_1802
@@ -1252,9 +1252,9 @@ PE_low_level_init         USES _SCGC1 _SCGC2 _PTAPE _PTADD _PTBDD _PTBD
                                 _PTJDS TI1_Init AS1_Init AD1_Init CCR_lock 
 TI1_OnInterrupt           USES estado 
 main                      USES PE_low_level_init estado main AD1_MeasureChan 
-                                Ultrasonido EjeX EjeY EjeZ AD1_GetChanValue16 CodError 
-                                _PTAD Gatillo Foto1 _PTDD Foto2 Foto3 Foto4 Foto5 
-                                _ILSR cTrama Enviados AS1_SendBlock 
+                                EjeX Ultrasonido EjeY EjeZ AD1_GetChanValue16 
+                                CodError _PTAD Gatillo Foto1 _PTDD Foto2 Foto3 Foto4 
+                                Foto5 _ILSR cTrama Enviados AS1_SendBlock 
 Init                      USES _startupData loadByte 
 _Startup                  USES __SEG_END_SSTACK Init main 
 AD1_Interrupt             USES ModeFlg _ADCR SumChan AD1_OutV OutFlg Channels 

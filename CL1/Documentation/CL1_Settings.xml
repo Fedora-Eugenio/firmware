@@ -929,8 +929,8 @@ push-pull
         <Interrupt_TxD_priority v="medium priority" />
         <Interrupt_Error v="Vsci1err" />
         <Interrupt_Error_priority v="medium priority" />
-        <Input_buffer_size v="5" />
-        <Output_buffer_size v="5" />
+        <Input_buffer_size v="9" />
+        <Output_buffer_size v="9" />
         <group name="Handshake">
           <boolgroup name="CTS" v="Disabled" />
           <boolgroup name="RTS" v="Disabled" />

@@ -6,7 +6,7 @@
 **     Component   : AsynchroSerial
 **     Version     : Component 02.611, Driver 01.33, CPU db: 3.00.067
 **     Compiler    : CodeWarrior HCS08 C Compiler
-**     Date/Time   : 2018-03-10, 11:16, # CodeGen: 30
+**     Date/Time   : 2018-03-12, 13:40, # CodeGen: 31
 **     Abstract    :
 **         This component "AsynchroSerial" implements an asynchronous serial
 **         communication. The component supports different settings of
@@ -23,8 +23,8 @@
 **             Stop bits               : 1
 **             Parity                  : none
 **             Breaks                  : Disabled
-**             Input buffer size       : 5
-**             Output buffer size      : 5
+**             Input buffer size       : 9
+**             Output buffer size      : 9
 **
 **         Registers
 **             Input buffer            : SCI1D     [$0027]
@@ -145,8 +145,8 @@
   typedef byte AS1_TComData ;          /* User type for communication. Size of this type depends on the communication data width. */
 #endif
 
-#define AS1_INP_BUF_SIZE 0x05U         /* Input buffer size */
-#define AS1_OUT_BUF_SIZE 0x05U         /* Output buffer size */
+#define AS1_INP_BUF_SIZE 0x09U         /* Input buffer size */
+#define AS1_OUT_BUF_SIZE 0x09U         /* Output buffer size */
 
 extern byte AS1_OutLen;                /* Length of the output buffer content */
 extern byte AS1_InpLen;                /* Length of the input buffer content */

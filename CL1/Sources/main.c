@@ -82,10 +82,11 @@ void main(void)
    			
    		case MEDIR:
    			//Se reciben las señales de los sensores analógicos y se guardan en las variables correspondientes
+   			AD1_MeasureChan(TRUE, 1);
+   			   			CodError =  AD1_GetChanValue16(1, &EjeX);
    			AD1_MeasureChan(TRUE, 0);
    			CodError =  AD1_GetChanValue16(0, &Ultrasonido);
-   			AD1_MeasureChan(TRUE, 1);
-   			CodError =  AD1_GetChanValue16(1, &EjeX);
+   			
    			AD1_MeasureChan(TRUE, 2);
    			CodError =  AD1_GetChanValue16(2, &EjeY);
    			AD1_MeasureChan(TRUE, 3);
