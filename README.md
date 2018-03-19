@@ -2,7 +2,7 @@
 
 ## Descripción
 
-El siguiente repositorio contiene toda la implementación del firmware del proyecto Laser Tag. Se encarga de adquirir la data analogica y digital les aplica el protocolo de comunicaciones para enviarla via serial a ala computadora. 
+El siguiente repositorio contiene toda la implementación del firmware del proyecto Laser Tag. Se realizó un protocolo de comunicaciones que permite la adquisición de la data analógica y digital, para enviarla via serial a la computadora. 
 
 ## Table of Contents
 - [Lista de Módulos](#lista-de-módulos)
@@ -15,22 +15,22 @@ El siguiente repositorio contiene toda la implementación del firmware del proye
 
         0xFN 0DDAAAAA 0AAAAAAA
 
-        **N:** Nro. Canales Mixtos
+     **N:** Nro. Canales Mixtos
 
-        **Dx:** Sensor Digital
+     **Dx:** Sensor Digital
 
-        **Ax:** Sensor Analógico
+     **Ax:** Sensor Analógico
 
 - [Events.h](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.h) Módulo de eventos de Processor Expert.
 - [Events.c](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.c) Automatic Contrast-Limited AHE (CLAHE)
 
 ## Requisitos
 
-La siguiente implementación fue desarrollada y probada en Windows 10 - 64 bits y Windows 7
+La siguiente implementación fue desarrollada y probada en Windows 10 - 64 bits y Windows 7 - 32 bits.
 
 ## Software
 
-- Implementación hecha en CodeWarrior v10.6 + Processor Expert.
+Implementación hecha en CodeWarrior v10.6 + Processor Expert.
 
 ## License
 
