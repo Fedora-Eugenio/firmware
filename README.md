@@ -1,55 +1,31 @@
-# Laser Tag
+# Firmware
 
-Descripción
+## Descripción
 
-**laser-tag** is a free and open source software [licensed](#license) under the [GNU GPLv3.0 License](https://en.wikipedia.org/wiki/GNU_General_Public_License), unless otherwise specified in particular modules or libraries (see LICENSE and README.md).
+El siguiente repositorio contiene toda la implementación del firmware del proyecto Laser Tag. Se encarga de adquirir la data analogica y digital les aplica el protocolo de comunicaciones para enviarla via serial a ala computadora. 
 
 ## Table of Contents
-- [Modules list](#modules-list)
-- [Requirements](#requirements)
-- [Getting Started](#getting-started)
-- [Software details](#software-details)
-- [Contributing](#contributing)
+- [Lista de Módulos](#lista-de-módulos)
+- [Requisitos](#requisitos)
+- [Software](#software)
 - [License](#license)
 
-## Modules list
-- [videostrip](https://github.com/MecatronicaUSB/uwimageproc/tree/master/modules/videostrip) Automatic frame extraction for 2D mosaic and 3D reconstruction 
-- [bgdehaze](https://github.com/MecatronicaUSB/uwimageproc/tree/master/modules/bgdehaze) BG Haze removal for UW images
-- [aclahe](https://github.com/MecatronicaUSB/uwimageproc/tree/master/modules/aclahe) Automatic Contrast-Limited AHE (CLAHE)
-- [histretch](https://github.com/MecatronicaUSB/uwimageproc/tree/master/modules/histretch) Percentile based histogram stretch w/channel selection
-- Automatic 2D mosaic generation > migrated to [mosaic](https://github.com/MecatronicaUSB/mosaic)
-- 3D sparse and dense reconstruction > migrated to [uw-slam](https://github.com/MecatronicaUSB/uw-slam)
+## Lista de Módulos
+- [Protocolo de Comunicaciones](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/main.c) Implementación de 4 canales de adquisición. Con capacidad para 8 sensores digitales y 4 analógicos. Se forman 4 canales mixtos cada uno de los cuales esta dividio en 2 mitades de 8 bits cada uno y una etiqueta al inicio de los 4 canales de la sigiente manera:
+0xFN 0DDAAAAA 0AAAAAAA
+#N: Nro. Canales Mixtos
+#Dx: Sensor Digital
+#Ax: Sensor Analógico
+- [Events.h](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.h) Módulo de eventos de Processor Expert.
+- [Events.c](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.c) Automatic Contrast-Limited AHE (CLAHE)
 
-Each module contains information describing its usage, with (usually) some useful README file. Code documentation is expected to be provided in Doxygen-compatible format. The current release contains C/C++, Python and/or Matlab implementations.
+## Requisitos
 
-## Requirements
+La siguiente implementación fue desarrollada y probada en Windows 10 - 64 bits y Windows 7
 
-The current release has been developed and tested in Ubuntu Windows 10 - 64 bits
+## Software
 
-
-
-## Getting Started
-
-This repository provides an (increasing) collection of compatible, yet independent, underwater oriented modules for image and video. To start using this toolbox, proceed to the standard *clone* procedure:
-
-```bash
-cd <some_directory>
-git clone https://github.com/Fedora-Eugenio/firmware.git
-```
-
-## Software Details
-
-- Implementation done in Codewarrior + Processor Expert, Python and/or Processing.
-
-## Contributing
-
-Summary of contributing guidelines (based on those of OpenCV project):
-
-* One pull request per issue;
-* Choose the right base branch;
-* Include tests and documentation;
-* Use small datasets for testing purposes;
-* Follow always the same coding style guide. If possible, apply code formating with any IDE.
+- Implementación hecha en CodeWarrior v10.6 + Processor Expert.
 
 ## License
 
