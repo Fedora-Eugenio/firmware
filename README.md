@@ -13,13 +13,13 @@ El siguiente repositorio contiene toda la implementación del firmware del proye
 ## Lista de Módulos
 - [Protocolo de Comunicaciones](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/main.c) Implementación de 4 canales de adquisición. Con capacidad para 8 sensores digitales y 4 analógicos. Se forman 4 canales mixtos cada uno de los cuales esta dividio en 2 mitades de 8 bits cada uno y una etiqueta al inicio de los 4 canales de la sigiente manera:
 
-0xFN 0DDAAAAA 0AAAAAAA
+        0xFN 0DDAAAAA 0AAAAAAA
 
-**N:** Nro. Canales Mixtos
+        **N:** Nro. Canales Mixtos
 
-**Dx:** Sensor Digital
+        **Dx:** Sensor Digital
 
-**Ax:** Sensor Analógico
+        **Ax:** Sensor Analógico
 
 - [Events.h](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.h) Módulo de eventos de Processor Expert.
 - [Events.c](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.c) Automatic Contrast-Limited AHE (CLAHE)
