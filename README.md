@@ -2,9 +2,9 @@
 
 ## Descripción
 
-El siguiente repositorio contiene toda la implementación del firmware del proyecto Laser Tag. Se realizó un protocolo de comunicaciones que permite la adquisición de la data analógica y digital, para enviarla via serial a la computadora. 
+El siguiente repositorio contiene toda la implementación del firmware del proyecto Laser Tag. Se realizó un protocolo de comunicaciones que permite la adquisición de la data analógica y digital, para enviarla vía serial a la computadora. 
 
-## Table of Contents
+## Tabla de Contenidos
 - [Lista de Módulos](#lista-de-módulos)
 - [Requisitos](#requisitos)
 - [Software](#software)
@@ -32,7 +32,7 @@ La siguiente implementación fue desarrollada y probada en Windows 10 - 64 bits 
 
 Implementación hecha en CodeWarrior v10.6 + Processor Expert.
 
-## License
+## Licencia
 
 Copyright (c) 2017-2018 Fedora Di Polo - Eugenio Martínez
 Released under the [GNU GPLv3.0 License](LICENSE). 
