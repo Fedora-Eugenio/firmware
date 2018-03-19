@@ -21,8 +21,8 @@ El siguiente repositorio contiene toda la implementación del firmware del proye
 
      **Ax:** Sensor Analógico
 
-- [Events.h](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.h) Módulo de eventos de Processor Expert.
-- [Events.c](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.c) Automatic Contrast-Limited AHE (CLAHE)
+- [Events.h](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.h) Módulo de eventos (.h) de Processor Expert.
+- [Events.c](https://github.com/Fedora-Eugenio/firmware/blob/master/CL1/Sources/Events.c) Módulo de eventos (.c) de Processor Expert.
 
 ## Requisitos
 
